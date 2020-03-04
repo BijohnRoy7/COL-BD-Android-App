@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/nav_home"/>
+
+        <item android:id="@+id/nav_sync"
+            android:title="Sync"
+            android:icon="@drawable/nav_sync"/>
+
+        <item android:id="@+id/nav_customer_list"
+            android:title="Customer List"
+            android:icon="@drawable/nav_customers"/>
+
+        <item android:id="@+id/nav_scheduled_list"
+            android:title="Scheduled List"
+            android:icon="@drawable/nav_schedule"/>
+
+        <item android:id="@+id/nav_complain_list"
+            android:title="Complain List"
+            android:icon="@drawable/nav_complain"/>
+
+        <item android:id="@+id/nav_collection_list"
+            android:title="Collection List"
+            android:icon="@drawable/nav_collections"/>
+
+    </group>
+
+</menu>
