@@ -14,8 +14,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Customer Name"
-            android:textStyle="bold"/>
+            android:text="Bangladesh Spinner &amp; Knitters (Pvt) Ltd. Dormittory (BEPZA)"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,16 +35,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Contact Person"/>
+                    android:text="Mr. Subrojit Lodh Jibu"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mobile Number"
+                    android:text="019786382389"
                     android:layout_marginTop="3dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Billing Date"
+                    android:text="Collection Date: 01-JAN-20"
                     android:layout_marginTop="3dp"/>
             </LinearLayout>
 
@@ -56,16 +57,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Billed Amount"/>
+                    android:text="Bill: 3080.00"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Due Amount"
+                    android:text="Due: -180.00"
                     android:layout_marginTop="3dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Payment Due Date"
+                    android:text="Amount: 7350.00"
                     android:layout_marginTop="3dp"/>
             </LinearLayout>
 
