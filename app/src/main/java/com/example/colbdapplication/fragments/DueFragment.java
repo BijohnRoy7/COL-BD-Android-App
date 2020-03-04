@@ -1,6 +1,7 @@
 package com.example.colbdapplication.fragments;
 
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,12 +10,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -24,8 +27,12 @@ import com.example.colbdapplication.adapters.DueAdapter;
 import com.example.colbdapplication.adapters.HomeAdapter;
 import com.example.colbdapplication.models.DueItems;
 import com.example.colbdapplication.models.HomeItems;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,6 +43,11 @@ public class DueFragment extends Fragment {
     private RecyclerView recyclerViewHome;
     private DueAdapter adapter;
     private List<DueItems> dueItems;
+
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private int year, month, day;
+    private Button btPickDate;
 
     public DueFragment() {
         // Required empty public constructor
@@ -157,20 +169,24 @@ public class DueFragment extends Fragment {
         btSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Scheduling", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "Scheduling", Toast.LENGTH_SHORT).show();
+                showScheduleDialog(dialog);
             }
         });
 
         btComplain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Complaining", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Complaining", Toast.LENGTH_SHORT).show();
+                showComplainDialog();
             }
         });
 
         dialog.show();
         dialog.getWindow().setAttributes(layoutParams);
     }
+
+
 
 
     // Submit Bill Dialog
@@ -295,5 +311,147 @@ public class DueFragment extends Fragment {
         dialog.show();
         dialog.getWindow().setAttributes(layoutParams);
     }
+
+
+
+
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0,
+                                      int year, int month, int day) {
+                    // TODO Auto-generated method stub
+                    // arg1 = year
+                    // arg2 = month
+                    // arg3 = day
+//                    showDate(arg1, arg2+1, arg3);
+                    Log.d("CollectedFragment", "onDateSet: "+day+"-"+month+"-"+year);
+//                    StringBuilder date = new StringBuilder().append(day).append("/").append(month).append("/").append(year);
+
+                    try {
+                        Date date = new Date(day + "/" + month + "/" + year);
+                        String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(date);
+                        btPickDate.setText(formattedDate);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+
+
+
+
+    private void showScheduleDialog(final Dialog oldDialog) {
+
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_schedule);
+        dialog.setCancelable(true);
+
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;
+        layoutParams.height =WindowManager.LayoutParams.MATCH_PARENT;
+
+        btPickDate = dialog.findViewById(R.id.bt_date_pick);
+
+        // setting current date to the calender
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        btPickDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                new DatePickerDialog(getContext(), myDateListener, year, month, day).show();
+            }
+        });
+
+
+        Button btSubmit = dialog.findViewById(R.id.bt_submit_schedule_dialog);
+        Button btCancel = dialog.findViewById(R.id.bt_cancel_schedule_dialog);
+
+        btSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Scheduling", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+                oldDialog.dismiss();
+            }
+        });
+
+        btCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+
+
+        dialog.show();
+        dialog.getWindow().setAttributes(layoutParams);
+
+    }
+
+
+
+    //Complain Dialog
+    private void showComplainDialog() {
+
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_complain);
+        dialog.setCancelable(true);
+
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;
+        layoutParams.height =WindowManager.LayoutParams.MATCH_PARENT;
+
+        MaterialSpinner typeSpinner = dialog.findViewById(R.id.type_spinner);
+        typeSpinner.setItems("Connection Problem", "Slow", "No Internet", "Not Specific");
+
+        MaterialSpinner prioritySpinner = dialog.findViewById(R.id.priority_spinner);
+        prioritySpinner.setItems("Low", "Medium", "High", "Urgent");
+
+        Button btSubmit = dialog.findViewById(R.id.bt_service_request);
+        Button btCancel = dialog.findViewById(R.id.bt_cancel_complain);
+
+        prioritySpinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
+                Toast.makeText(getContext(), ""+item, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        typeSpinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
+                Toast.makeText(getContext(), ""+item, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        btCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+        dialog.getWindow().setAttributes(layoutParams);
+    }
+
 
 }
