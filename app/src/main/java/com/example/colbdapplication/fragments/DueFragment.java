@@ -109,6 +109,8 @@ public class DueFragment extends Fragment {
         });
     }
 
+
+
     // method for showing dialog
     private void showDialog() {
 
@@ -155,7 +157,9 @@ public class DueFragment extends Fragment {
         btReports.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Reporting", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "Reporting", Toast.LENGTH_SHORT).show();
+
+                showReportDialog(dialog);
             }
         });
 
@@ -185,8 +189,6 @@ public class DueFragment extends Fragment {
         dialog.show();
         dialog.getWindow().setAttributes(layoutParams);
     }
-
-
 
 
     // Submit Bill Dialog
@@ -315,6 +317,25 @@ public class DueFragment extends Fragment {
 
 
 
+    private void showReportDialog(Dialog oldDialog) {
+
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_schedule);
+        dialog.setCancelable(true);
+
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;
+        layoutParams.height =WindowManager.LayoutParams.MATCH_PARENT;
+
+
+        dialog.show();
+        dialog.getWindow().setAttributes(layoutParams);
+    }
+
+
+
 
     private DatePickerDialog.OnDateSetListener myDateListener = new
             DatePickerDialog.OnDateSetListener() {
@@ -342,6 +363,7 @@ public class DueFragment extends Fragment {
 
 
 
+    // Schedule Dialog
     private void showScheduleDialog(final Dialog oldDialog) {
 
         final Dialog dialog = new Dialog(getContext());
@@ -394,7 +416,6 @@ public class DueFragment extends Fragment {
 
         dialog.show();
         dialog.getWindow().setAttributes(layoutParams);
-
     }
 
 
