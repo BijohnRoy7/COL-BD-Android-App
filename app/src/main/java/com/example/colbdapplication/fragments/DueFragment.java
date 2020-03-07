@@ -25,8 +25,13 @@ import android.widget.Toast;
 import com.example.colbdapplication.R;
 import com.example.colbdapplication.adapters.DueAdapter;
 import com.example.colbdapplication.adapters.HomeAdapter;
+import com.example.colbdapplication.adapters.ReportAdapter;
 import com.example.colbdapplication.models.DueItems;
 import com.example.colbdapplication.models.HomeItems;
+import com.example.colbdapplication.models.ReportFooter;
+import com.example.colbdapplication.models.ReportHeader;
+import com.example.colbdapplication.models.ReportItem;
+import com.example.colbdapplication.models.ReportMain;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.text.SimpleDateFormat;
@@ -317,11 +322,11 @@ public class DueFragment extends Fragment {
 
 
 
-    private void showReportDialog(Dialog oldDialog) {
+    private void showReportDialog(final Dialog oldDialog) {
 
         final Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_schedule);
+        dialog.setContentView(R.layout.dialog_report);
         dialog.setCancelable(true);
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
@@ -329,12 +334,72 @@ public class DueFragment extends Fragment {
         layoutParams.width =WindowManager.LayoutParams.MATCH_PARENT;
         layoutParams.height =WindowManager.LayoutParams.MATCH_PARENT;
 
+        // RecyclerView works
+        RecyclerView reportRecyclerView = dialog.findViewById(R.id.recViewReport);
+        reportRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        ReportAdapter reportAdapter = new ReportAdapter(getReportList(), getContext());
+        reportRecyclerView.setAdapter(reportAdapter);
+
+        reportAdapter.setReportItemClickListener(new ReportAdapter.ReportItemClickListener() {
+            @Override
+            public void onClickSendEmail(int position) {
+                dialog.dismiss();
+                oldDialog.dismiss();
+            }
+
+            @Override
+            public void onClickCancel(int position) {
+                dialog.dismiss();
+            }
+        });
 
         dialog.show();
         dialog.getWindow().setAttributes(layoutParams);
     }
 
+    private List<ReportItem> getReportList() {
+        List<ReportItem> recyclerViewItems = new ArrayList<>();
 
+        ReportHeader header = new ReportHeader();
+        //add header
+        recyclerViewItems.add(header);
+
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+        recyclerViewItems.add(new ReportMain());
+
+        ReportFooter footer = new ReportFooter();
+        //add footer
+        recyclerViewItems.add(footer);
+
+        return recyclerViewItems;
+    }
 
 
     private DatePickerDialog.OnDateSetListener myDateListener = new
