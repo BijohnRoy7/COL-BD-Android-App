@@ -17,7 +17,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/bt_close_collection"
+                android:id="@+id/bt_close"
                 android:layout_width="?attr/actionBarSize"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/selectableItemBackgroundBorderless"
@@ -46,7 +46,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -88,9 +88,50 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
                         android:textSize="14sp"
                         android:text="08-JAN-20"
+                        android:layout_weight=".5"
+                        android:gravity="end"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:text="Type"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="Urgent"
+                        android:layout_weight=".5"
+                        android:gravity="end"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:text="Priority"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:text="Priority"
                         android:layout_weight=".5"
                         android:gravity="end"/>
                 </LinearLayout>
@@ -100,7 +141,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="15dp">
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -108,85 +150,38 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Type"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"/>
 
-                        <com.jaredrummler.materialspinner.MaterialSpinner
-                            android:id="@+id/type_spinner"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Priority"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"/>
-
-                    <com.jaredrummler.materialspinner.MaterialSpinner
-                        android:id="@+id/priority_spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Complain By"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"/>
-
-                    <com.google.android.material.textfield.TextInputLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/btn_date_bg">
-
-                        <androidx.appcompat.widget.AppCompatEditText
-                            android:layout_width="match_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:gravity="top"
-                            android:hint=""
-                            android:inputType="textMultiLine"
-                            android:maxLines="6"
-                            android:minLines="3"
-                            android:textColor="@android:color/white" />
+                            android:layout_weight=".5"
+                            android:text="Complain By"
+                            android:textStyle="bold"/>
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bijohn Roy"
+                            android:gravity="end"/>
+                    </LinearLayout>
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Note"
-                        android:textAllCaps="true"
+                        android:text="Notes"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"/>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/btn_date_bg">
-
-                        <androidx.appcompat.widget.AppCompatEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:gravity="top"
-                            android:hint=""
-                            android:inputType="textMultiLine"
-                            android:maxLines="12"
-                            android:minLines="6"
-                            android:textColor="@android:color/white" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
+                        android:text="Internet Speed Problem. Please solve as soon as possible"/>
 
 
                 </LinearLayout>
@@ -198,68 +193,8 @@
                 android:id="@+id/collection_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <Button
-                            android:id="@+id/bt_service_request"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Service Request"
-                            android:background="#0065EF"
-                            android:textColor="@color/colorWhite"/>
-
-                        <Button
-                            android:id="@+id/bt_cancel_complain"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Cancel"
-                            android:layout_marginLeft="5dp"
-                            android:background="#7107B4"
-                            android:textColor="@color/colorWhite"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/received_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Payment Received"
-                        android:layout_weight="1"
-                        android:textAllCaps="true"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="7350.00"
-                        android:layout_gravity="end"
-                        android:textAllCaps="true"/>
-                </LinearLayout>
+                android:layout_marginTop="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -272,16 +207,16 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <Button
-                            android:id="@+id/bt_save_received"
+                            android:id="@+id/bt_solved"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Save"
+                            android:text="Solved"
                             android:background="#0065EF"
                             android:textColor="@color/colorWhite"/>
 
                         <Button
-                            android:id="@+id/bt_cancel_received"
+                            android:id="@+id/bt_cancel"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
