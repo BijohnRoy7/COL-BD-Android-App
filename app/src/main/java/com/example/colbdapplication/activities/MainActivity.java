@@ -13,10 +13,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.colbdapplication.R;
+import com.example.colbdapplication.fragments.CollectedFragment;
 import com.example.colbdapplication.fragments.CollectionListFragment;
 import com.example.colbdapplication.fragments.ComplainListFragment;
 import com.example.colbdapplication.fragments.CustomerListFragment;
 import com.example.colbdapplication.fragments.HomeFragment;
+import com.example.colbdapplication.fragments.ScheduleFragment;
 import com.example.colbdapplication.fragments.ScheduledListFragment;
 import com.example.colbdapplication.fragments.SyncFragment;
 import com.google.android.material.navigation.NavigationView;
